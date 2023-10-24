@@ -49,3 +49,89 @@ Data Sources
 Incorporating data analytics to analyze noise pollution patterns, high-noise areas, and potential sources is a forward-thinking approach to address this urban challenge. By leveraging data-driven insights, cities can take proactive measures to reduce noise pollution, improve quality of life, and create more sustainable urban environments.
 
 This initiative requires collaboration between government agencies, environmental organizations, and data analytics experts to collect, analyze, and act upon the data effectively. It represents a significant step towards creating quieter, healthier, and more livable cities for the future.
+
+
+noisepollution_phase 3 :
+
+CODE :
+
+Main.py :
+
+from machine import Pin, ADC
+from time import sleep
+
+pot = ADC(Pin(2))
+pot.atten(ADC.ATTN_11DB)
+
+# Create a list to store analog values
+analog_values = []
+
+while True:
+    pot_value = pot.read()
+    analog_values.append(pot_value)
+
+    # Calculate and print the average value over the last 10 readings
+    if len(analog_values) >= 10:
+        avg_value = sum(analog_values[-10:]) / 10
+        print("Potentiometer Average:", avg_value)
+    
+    # Implement a threshold for an action
+    if pot_value > 2048:
+        print("Threshold crossed. Perform an action here.")
+
+    sleep(0.1)
+import machine, time
+
+a = machine.ADC(machine.Pin(32))
+
+# Create a list to store audio samples
+audio_samples = []
+
+while True:
+    sample = a.read()
+    audio_samples.append(sample)
+
+    # Process and print audio data, e.g., average or max value
+    if len(audio_samples) >= 100:
+        avg_sample = sum(audio_samples[-100:]) / 100
+        max_sample = max(audio_samples[-100:])
+        print("Audio Average:", avg_sample)
+        print("Audio Max:", max_sample)
+
+    # Implement an action based on audio data, e.g., audio recording
+    if sample > 2048:
+        print("Sound detected. Recording...")
+
+    time.sleep(1/44100)
+
+diagram.jason :
+
+{
+  "version": 1,
+  "author": "Gokul Raja",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": -129.7,
+      "left": 119.8,
+      "attrs": { "env": "micropython-20231005-v1.21.0" }
+    },
+    { "type": "wokwi-microphone", "id": "mic", "top": -132.18, "left": 330.99, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "mic:1", "esp:D2", "green", [ "v0" ] ],
+    [ "mic:2", "esp:GND.1", "green", [ "v0" ] ]
+  ],
+  "serialMonitor": {"display":"plotter"},
+  "dependencies": {}
+}
+
+DESCRIPTION :
+
+•	In this modification, we've added a list to store the analog values, calculated the average value over the last 10 readings, and added a threshold to trigger an action when the potentiometer value crosses a certain point.
+
+•	We've also added a list to store audio samples, calculated the average and maximum audio values over the last 100 samples, and added an action to record audio when a sound is detected.
