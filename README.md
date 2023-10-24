@@ -51,6 +51,16 @@ Incorporating data analytics to analyze noise pollution patterns, high-noise are
 This initiative requires collaboration between government agencies, environmental organizations, and data analytics experts to collect, analyze, and act upon the data effectively. It represents a significant step towards creating quieter, healthier, and more livable cities for the future.
 
 
+
+
+
+
+
+
+
+
+
+
 noisepollution_phase 3 :
 
 CODE :
