@@ -310,3 +310,19 @@ The HTML document is structured with a standard DOCTYPE declaration, meta tags f
 The CSS is used to reset default styles, set the background colour, and style various elements for a visually appealing design. The body element occupies the full viewport height (minheight: 100vh) and centers content both horizontally and vertically using flexbox. 
 The JavaScript code fetches real-time noise data from a specified server endpoint (https://your-server-url/api/noise) and updates the displayed noise level and last update time. 
 The provided code creates a webpage for real-time noise level monitoring. It features an attractive design with a header and a noise display section, presented in a tabular format. JavaScript fetches data from a server and updates noise level and last update time every 5 seconds, offering a visually pleasing and informative user interface. 
+
+
+PHASE 5:
+
+CONCLUSION : 
+The HTML document is structured with a standard DOCTYPE declaration, meta tags for 
+character set and viewport settings, and a title for the page. It includes references to an external 
+CSS file (style.css) for styling and an external JavaScript file (script.js) for functionality. 
+The CSS is used to reset default styles, set the background colour, and style various elements for 
+a visually appealing design. The body element occupies the full viewport height (min-height: 
+100vh) and centers content both horizontally and vertically using flexbox.
+The JavaScript code fetches real-time noise data from a specified server endpoint (https://yourserver-url/api/noise) and updates the displayed noise level and last update time.
+The provided code creates a webpage for real-time noise level monitoring. It features an 
+attractive design with a header and a noise display section, presented in a tabular format. 
+JavaScript fetches data from a server and updates noise level and last update time every 5 
+seconds, offering a visually pleasing and informative user interface
