@@ -145,3 +145,168 @@ DESCRIPTION :
 •	In this modification, we've added a list to store the analog values, calculated the average value over the last 10 readings, and added a threshold to trigger an action when the potentiometer value crosses a certain point.
 
 •	We've also added a list to store audio samples, calculated the average and maximum audio values over the last 100 samples, and added an action to record audio when a sound is detected.
+
+
+PHASE 5 :
+NOISE POLLUTION MONITORING 
+ 
+Html  
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Noise Pollution Platform</title> 
+    <link rel="stylesheet" href="style.css"> 
+</head> 
+<body> 
+    <header> 
+        <h1>Noise Pollution Information</h1> 
+    </header> 
+    <main> 
+        <section id="noise-display"> 
+            <h2>Real-time Noise Level</h2> 
+            <table> 
+                <tr> 
+                    <td>Noise Level:</td> 
+                    <td><span id="noise-level">-- dB</span></td> 
+                </tr> 
+                <tr> 
+                    <td>Last Update:</td> 
+                    <td><span id="last-update">--</span></td> 
+                </tr> 
+            </table> 
+        </section> 
+    </main> 
+    <script src="script.js"></script> 
+</body> 
+</html> 
+ Style 
+/* Reset some default styles and set a background color */ body { 
+    font-family: 'Arial', sans-serif;     margin: 0;     padding: 0;     background-color: #f0f0f0; 
+    display: flex;     flex-direction: column;     align-items: center;     justify-content: center;     min-height: 100vh; 
+} 
+/* Style the header */ header {     background-color: #3498db; 
+    color: #ffffff;     text-align: center;     padding: 15px; 
+} 
+/* Style the main content */ main { 
+    text-align: center; 
+} 
+/* Style the noise display section */ 
+#noise-display {     background-color: #ecf0f1;     border: 1px solid #bdc3c7;     border-radius: 5px;     padding: 20px;     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);     color: #333;     max-width: 400px;     margin: 0 auto; 
+} 
+#noise-display h2 { 
+    font-size: 24px; 
+    margin-bottom: 20px; 
+    color: #555; 
+} 
+table {     width: 100%; 
+    text-align: left; 
+} 
+td { 
+    padding: 5px 0;     font-size: 16px; 
+} 
+/* Responsive design for smaller screens */ 
+@media (max-width: 768px) { 
+    #noise-display {         padding: 10px; 
+    } 
+    #noise-display h2 { 
+        font-size: 20px; 
+    } 
+    table {         font-size: 14px; 
+    } 
+} 
+Javascript 
+// script.js 
+function updateNoiseData() {     fetch('https://your-server-url/api/noise') // Replace with your actual server URL 
+        .then(response => response.json()) 
+        .then(data => { 
+            document.getElementById('noise-level').textContent = `Noise Level: 
+${data.noiseLevel} dB`; 
+            document.getElementById('last-update').textContent = `Last Update: ${data.timestamp}`; 
+        }) 
+        .catch(error => console.error(error)); 
+} 
+ 
+updateNoiseData(); setInterval(updateNoiseData, 5000); 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+  
+ 
+APP: The same as the above website but with some modifications 
+ 
+     import 'package:flutter/material.dart'; import 'package:http/http.dart as http; import 'dart:convert'; 
+ 
+void main() {   runApp(MyApp()); 
+} 
+ 
+class MyApp extends StatelessWidget { 
+  @override 
+  Widget build(BuildContext context) { 
+    return MaterialApp(       home: Scaffold(         appBar: AppBar(           title: Text('Noise Pollution Information'), 
+        ), 
+        body: NoiseDisplay(), 
+      ), 
+    ); 
+  } 
+} 
+ 
+class NoiseDisplay extends StatefulWidget { 
+  @override 
+  _NoiseDisplayState createState() => _NoiseDisplayState(); 
+} 
+ 
+class _NoiseDisplayState extends State<NoiseDisplay> { 
+  String noiseLevel = '-- dB'; 
+  String lastUpdate = '--'; 
+ 
+  void updateNoiseData() async {     final response = await http.get(Uri.parse('https://your-server-url/api/noise')); 
+ 
+    if (response.statusCode == 200) {       final data = jsonDecode(response.body); 
+      setState(() {         noiseLevel = '${data['noiseLevel']} dB';         lastUpdate = data['timestamp']; 
+      }); 
+    } 
+  } 
+ 
+  @override 
+  void initState() {     super.initState(); 
+    updateNoiseData(); 
+    Timer.periodic(Duration(seconds: 5), (Timer t) => updateNoiseData()); 
+  } 
+ 
+  @override 
+  Widget build(BuildContext context) {     return Center(       child: Column(         mainAxisAlignment: MainAxisAlignment.center, 
+        children: [ 
+          Text('Real-time Noise Level', style: TextStyle(fontSize: 24)), 
+          Text('Noise Level: $noiseLevel', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)), 
+          Text('Last Update: $lastUpdate', style: TextStyle(fontSize: 16, color: Colors.grey)), 
+        ], 
+      ), 
+    ); 
+  } 
+} 
+ 
+ 
+ 
+ 
+Output 
+  
+ 
+ 
+ 
+ 
+Description: 
+The HTML document is structured with a standard DOCTYPE declaration, meta tags for character set and viewport settings, and a title for the page. It includes references to an external CSS file (style.css) for styling and an external JavaScript file (script.js) for functionality.  
+The CSS is used to reset default styles, set the background colour, and style various elements for a visually appealing design. The body element occupies the full viewport height (minheight: 100vh) and centers content both horizontally and vertically using flexbox. 
+The JavaScript code fetches real-time noise data from a specified server endpoint (https://your-server-url/api/noise) and updates the displayed noise level and last update time. 
+The provided code creates a webpage for real-time noise level monitoring. It features an attractive design with a header and a noise display section, presented in a tabular format. JavaScript fetches data from a server and updates noise level and last update time every 5 seconds, offering a visually pleasing and informative user interface. 
